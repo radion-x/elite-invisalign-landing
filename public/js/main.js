@@ -3,6 +3,17 @@
  * Handles general website functionality
  */
 
+// Make logo clickable to scroll to top
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -138,7 +149,7 @@ document.querySelectorAll('.service-link').forEach(link => {
         
         // Pre-fill service field if chat is available
         setTimeout(() => {
-            const serviceSelect = document.querySelector('#service');
+            const serviceSelect = document.querySelector('#serviceType');
             if (serviceSelect) {
                 const options = Array.from(serviceSelect.options);
                 const matchingOption = options.find(opt => 
@@ -154,8 +165,8 @@ document.querySelectorAll('.service-link').forEach(link => {
 
 // Console welcome message (optional, for developers)
 console.log(
-    '%c✨ Website Template by Your Company',
-    'color: #2563eb; font-size: 16px; font-weight: bold;'
+    '%c✨ Elite Dentistry Neutral Bay',
+    'color: #5990AE; font-size: 16px; font-weight: bold;'
 );
 
 // Handle form input animations

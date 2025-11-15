@@ -2,11 +2,15 @@
    Design System - Award-Winning Standards
    =================================== */
 :root {
-    /* Color Palette - Professional & Accessible */
-    --primary-blue: #0F52BA;
-    --primary-dark: #0A3D8F;
-    --primary-light: #4A7FCC;
-    --accent-blue: #2B7DE9;
+    /* Primary Brand Colors - Based on Logo #5990AE */
+    --primary-blue: #5990AE;        /* Main brand color from logo */
+    --primary-dark: #3E6B8A;        /* Hover states, dark accents */
+    --primary-light: #7AABCA;       /* Light backgrounds, highlights */
+    --accent-blue: #88C5E8;         /* Secondary accents, gradients */
+
+    /* Legacy teal aliases (deprecated but kept for compatibility) */
+    --primary-teal: #5990AE;
+    --accent-teal: #88C5E8;
 
     /* Neutrals */
     --gray-50: #F9FAFB;
@@ -148,7 +152,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-8);
+    gap: var(--space-4);
 }
 
 .logo {
@@ -157,6 +161,7 @@ nav {
     gap: var(--space-3);
     text-decoration: none;
     transition: transform var(--transition-base);
+    cursor: pointer;
 }
 
 .logo:hover {
@@ -184,14 +189,14 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: var(--space-2);
+    gap: var(--space-1);
     margin: 0;
     padding: 0;
 }
 
 .nav-links a {
     display: block;
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-3);
     color: var(--gray-700);
     text-decoration: none;
     font-weight: var(--font-medium);
@@ -215,23 +220,29 @@ nav {
 .phone-link {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
-    color: var(--gray-700);
+    justify-content: center;
+    gap: var(--space-3);
+    color: var(--primary-blue);
     text-decoration: none;
-    font-weight: var(--font-semibold);
-    font-size: var(--text-sm);
-    padding: var(--space-2) var(--space-3);
+    font-weight: var(--font-bold);
+    font-size: var(--text-lg);
+    padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-md);
+    border: 1px solid var(--gray-200);
     transition: all var(--transition-fast);
 }
 
 .phone-link:hover {
-    color: var(--primary-blue);
+    color: var(--primary-dark);
     background-color: var(--gray-50);
+    border-color: var(--primary-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(89, 144, 174, 0.15);
 }
 
 .phone-link svg {
     flex-shrink: 0;
+    stroke: currentColor;
 }
 
 .mobile-menu-toggle {
@@ -326,7 +337,7 @@ nav {
    Hero Section - Award-Winning
    =================================== */
 .hero {
-    background: linear-gradient(135deg, #0A3D8F 0%, #0F52BA 50%, #2B7DE9 100%);
+    background: linear-gradient(135deg, #3E6B8A 0%, #5990AE 50%, #7AABCA 100%);
     color: white;
     padding: var(--space-16) 0 var(--space-12);
     position: relative;

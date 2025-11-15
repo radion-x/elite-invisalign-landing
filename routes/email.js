@@ -53,7 +53,7 @@ router.post('/send-email', async (req, res) => {
                 <style>
                     body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
                     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                    .header { background: #0F52BA; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+                    .header { background: #5990AE; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
                     .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; }
                     .field { margin-bottom: 20px; }
                     .label { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
@@ -163,11 +163,11 @@ Received on ${new Date().toLocaleString()}
 
         // Email data
         const emailData = {
-            from: `Blue Slip Sydney <noreply@${process.env.MAILGUN_DOMAIN}>`,
-            to: process.env.RECIPIENT_EMAIL,
+            from: `Elite Dentistry <noreply@${process.env.MAILGUN_DOMAIN}>`,
+            to: process.env.RECIPIENT_EMAIL || 'reception@elitedentistry.com.au',
             subject: isBlueSlipQuote
                 ? `🚗 Blue Slip Quote: ${name} - ${suburb} (${vehicleType})${timing === 'today' || timing === 'tomorrow' ? ' - URGENT' : ''}`
-                : `New Contact: ${name}`,
+                : `New Invisalign Inquiry: ${name}`,
             html: emailContent,
             text: textContent,
             'h:Reply-To': isBlueSlipQuote ? undefined : email
@@ -179,9 +179,9 @@ Received on ${new Date().toLocaleString()}
         // Send auto-reply to customer (only if they provided an email)
         if (email) {
             const autoReplyData = {
-                from: `Blue Slip Sydney <noreply@${process.env.MAILGUN_DOMAIN}>`,
+                from: `Elite Dentistry <noreply@${process.env.MAILGUN_DOMAIN}>`,
                 to: email,
-                subject: 'Thank you for contacting Blue Slip Sydney',
+                subject: 'Thank you for contacting Elite Dentistry',
                 html: `
                     <!DOCTYPE html>
                     <html>
@@ -189,7 +189,7 @@ Received on ${new Date().toLocaleString()}
                         <style>
                             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
                             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                            .header { background: #0F52BA; color: white; padding: 20px; text-align: center; }
+                            .header { background: #5990AE; color: white; padding: 20px; text-align: center; }
                             .content { padding: 30px; background: #f9fafb; }
                             .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 12px; }
                         </style>
@@ -197,23 +197,23 @@ Received on ${new Date().toLocaleString()}
                     <body>
                         <div class="container">
                             <div class="header">
-                                <h2 style="margin: 0;">Thank You for Contacting Blue Slip Sydney!</h2>
+                                <h2 style="margin: 0;">Thank You for Contacting Elite Dentistry!</h2>
                             </div>
                             <div class="content">
                                 <p>Hi ${name},</p>
                                 <p>Thank you for reaching out to us. We've received your message and will get back to you as soon as possible.</p>
-                                <p>For urgent inquiries, feel free to call us directly at <strong>(02) 9516 3366</strong> or SMS <strong>0412 785 767</strong>.</p>
-                                <p>Best regards,<br>Blue Slip Sydney Team</p>
+                                <p>For urgent inquiries, feel free to call us directly at <strong>(02) 8350 5840</strong>.</p>
+                                <p>Best regards,<br>Elite Dentistry Team</p>
                             </div>
                             <div class="footer">
                                 <p>This is an automated response. Please do not reply to this email.</p>
-                                <p>63-65 Campbell Street, St Peters NSW 2044</p>
+                                <p>20 Young Street, Neutral Bay NSW 2089</p>
                             </div>
                         </div>
                     </body>
                     </html>
                 `,
-                text: `Hi ${name},\n\nThank you for reaching out to us. We've received your message and will get back to you as soon as possible.\n\nFor urgent inquiries, call (02) 9516 3366 or SMS 0412 785 767.\n\nBest regards,\nBlue Slip Sydney Team`
+                text: `Hi ${name},\n\nThank you for reaching out to us. We've received your message and will get back to you as soon as possible.\n\nFor urgent inquiries, call (02) 8350 5840.\n\nBest regards,\nElite Dentistry Team`
             };
 
             // Send auto-reply (don't wait for it, send in background)
@@ -223,9 +223,7 @@ Received on ${new Date().toLocaleString()}
         }
 
         res.status(200).json({
-            message: isBlueSlipQuote
-                ? 'Thank you! We\'ll contact you shortly with your quote.'
-                : 'Thank you! Your message has been sent successfully.',
+            message: 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.',
             success: true
         });
 
