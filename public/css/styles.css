@@ -2054,11 +2054,15 @@ footer {
     }
 
     .contact-wrapper {
+        grid-template-columns: 1fr;
         gap: var(--space-6);
+        justify-items: center;
     }
 
     .contact-info {
         text-align: center;
+        width: 100%;
+        max-width: min(500px, calc(100vw - 3rem));
     }
 
     .info-item {
@@ -2067,6 +2071,8 @@ footer {
 
     .contact-cta {
         padding: var(--space-8) var(--space-6);
+        width: 100%;
+        max-width: min(500px, calc(100vw - 3rem));
     }
 
     .contact-cta h3 {
